@@ -1,37 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Prisma App with PostgreSQL
+
+This [Next.js](https://nextjs.org) project uses **Prisma ORM** for database interactions and handles file uploads.
+
+---
 
 ## Getting Started
 
-First, run the development server:
+1.  **Install PostgreSQL**:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+    ```bash
+    /bin/bash -c "$(curl -fsSL [https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh](https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh))"
+    brew install postgresql
+    brew services start postgresql
+    createdb mydb
+    psql -d mydb
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2.  **Create a PostgreSQL User**:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+    ```bash
+    psql postgres
+    # or sudo -u postgres psql
+    CREATE USER myuser WITH PASSWORD 'mypassword' SUPERUSER;
+    \du
 
-## Learn More
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+    \_Update your `.env` with these credentials.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3.  **Install Dependencies**:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    ```bash
+    npm install # or yarn install or pnpm install
 
-## Deploy on Vercel
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4.  **Generate Prisma Client & Run Migrations**:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# icap
+    ```bash
+    npx prisma generate
+    npx prisma migrate dev --name init
+    ```
+
+5.  **Run the Development Server**:
+    ```bash
+    npm run dev # or yarn dev or pnpm dev or bun dev
+    ```
+    Open `http://localhost:3000`.
+
+---
+
+## Developing Further (If I Had More Time)
+
+- Implement user authentication. [NextJS Auth](https://nextjs.org/docs/app/guides/authentication)
+- Improve form validation and error handling.
+- Add confirmation notifications for submissions.
+- Add feedback while submitting
+- Display current user attributes
+- Enhance UI/UX.
