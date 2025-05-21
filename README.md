@@ -2,7 +2,9 @@
 
 This [Next.js](https://nextjs.org) project uses **Prisma ORM** for database interactions and handles file uploads.
 
----
+The .env file has been included to connect the database/user/password.
+
+This would not normally be done outside of a challenge.
 
 ## Getting Started
 
@@ -18,32 +20,44 @@ This [Next.js](https://nextjs.org) project uses **Prisma ORM** for database inte
     ```
 
 2.  **Create a PostgreSQL User**:
+3.  **Install PostgreSQL**:
+
+    ```bash
+    /bin/bash -c "$(curl -fsSL [https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh](https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh))"
+    brew install postgresql
+    brew services start postgresql
+    createdb mydb
+    psql -d mydb
+
+    ```
+
+4.  **Create a PostgreSQL User**:
 
     ```bash
     psql postgres
     # or sudo -u postgres psql
-    CREATE USER myuser WITH PASSWORD 'mypassword' SUPERUSER;
+    CREATE USER 'myuser' WITH PASSWORD 'mypassword' SUPERUSER;
     \du
 
     ```
 
     \_Update your `.env` with these credentials.
 
-3.  **Install Dependencies**:
+5.  **Install Dependencies**:
 
     ```bash
     npm install # or yarn install or pnpm install
 
     ```
 
-4.  **Generate Prisma Client & Run Migrations**:
+6.  **Generate Prisma Client & Run Migrations**:
 
     ```bash
     npx prisma generate
     npx prisma migrate dev --name init
     ```
 
-5.  **Run the Development Server**:
+7.  **Run the Development Server**:
     ```bash
     npm run dev # or yarn dev or pnpm dev or bun dev
     ```
