@@ -12,7 +12,28 @@ const FormView: React.FC<FormViewProps & React.PropsWithChildren> = ({
   children,
 }) => {
   const { handleSubmit } = form;
-  const onSubmit: SubmitHandler<IFormState> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<IFormState> = async (data) => {
+    const formData = new FormData();
+    const file = data.uploadedFile;
+    if (!file) {
+      throw new Error("File is required");
+    }
+    console.log({ data });
+
+    formData.append("firstName", data.firstName!);
+    formData.append("lastName", data.lastName!);
+    formData.append("dateOfBirth", data.dateOfBirth as unknown as string);
+    formData.append("phoneNumber", data.phoneNumber!);
+    formData.append("streetAddress", data.streetAddress!);
+    formData.append("state", data.state!);
+    formData.append("zipCode", data.zipCode!.toString());
+    formData.append("file", file); // File object
+
+    await fetch("/api/submit", {
+      method: "POST",
+      body: formData,
+    });
+  };
 
   return <form onSubmit={handleSubmit(onSubmit)}>{children}</form>;
 };

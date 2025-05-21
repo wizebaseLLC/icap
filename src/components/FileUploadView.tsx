@@ -49,7 +49,6 @@ const FileUploadView: React.FC<FileUploadProps> = ({
             padding: "20px",
             textAlign: "center",
             cursor: "pointer",
-            //  backgroundColor: isDragging ? "#eee" : "white",
           }}
         >
           <input {...getInputProps()} />

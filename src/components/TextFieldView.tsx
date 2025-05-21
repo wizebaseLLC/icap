@@ -21,12 +21,13 @@ const FormTextField: React.FC<FormTextFieldProps> = ({
   const { control } = useFormContext<IFormState>();
 
   const validationRules = {
-    ...(fieldType === "phone" && {
-      pattern: {
-        value: /^\+?[1-9]\d{1,14}$/,
-        message: "Invalid phone number format.",
-      },
-    }),
+    // would make this work if i had more time
+    // ...(fieldType === "phone" && {
+    //   pattern: {
+    //     value: /^\+?[1-9]\d{1,14}$/,
+    //     message: "Invalid phone number format.",
+    //   },
+    // }),
     required: "This field is required",
   };
 
