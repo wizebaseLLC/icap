@@ -6,6 +6,8 @@ The .env file has been included to connect the database/user/password.
 
 This would not normally be done outside of a challenge.
 
+### Before you begin, install [_NodeJS_](https://nodejs.org/en/download)
+
 ## Getting Started
 
 1.  **Install PostgreSQL**:
