@@ -57,12 +57,17 @@ const Home: React.FC = () => {
                 </FormGridItem>
                 <FormGridItem>
                   <FileUploadView
-                    name="uploadedFile"
+                    name="file"
                     label="Upload your CSV, Text, or PDF"
                   />
                 </FormGridItem>
                 <FormGridItem size={{ sm: 12, md: 12, lg: 5, xs: 12 }}>
-                  <Button type="submit" fullWidth variant="outlined">
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="outlined"
+                    disabled={methods.formState.isSubmitting}
+                  >
                     Submit Form
                   </Button>
                 </FormGridItem>

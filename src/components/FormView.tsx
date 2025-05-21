@@ -14,11 +14,10 @@ const FormView: React.FC<FormViewProps & React.PropsWithChildren> = ({
   const { handleSubmit } = form;
   const onSubmit: SubmitHandler<IFormState> = async (data) => {
     const formData = new FormData();
-    const file = data.uploadedFile;
+    const file = data.file;
     if (!file) {
       throw new Error("File is required");
     }
-    console.log({ data });
 
     formData.append("firstName", data.firstName!);
     formData.append("lastName", data.lastName!);
